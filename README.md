@@ -4,4 +4,4 @@ Projeto criado em bootcamp da [DIO](https://digitalinnovation.one/), para exerci
 
 
 
-Trabalhados conceitos de Encapsulamento, Herança, Interfaces.
+Trabalhados conceitos de Encapsulamento, Herança, Polimorfismo.
