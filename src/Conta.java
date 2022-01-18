@@ -1,4 +1,6 @@
-public abstract class Conta implements IConta {
+import java.io.Serializable;
+
+public abstract class Conta implements IConta, Serializable {
     private static final int AGENCIA_PADRAO = 1;
     private static int SEQUENCIAL = 1;
 
