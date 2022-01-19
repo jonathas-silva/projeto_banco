@@ -1,8 +1,6 @@
 public class ContaCorrente extends Conta {
-
-    @Override
-    public void imprimirExtrato() {
-        System.out.println("=== Extrato Conta Corrente ===");
-        ImprimirAtributos();
+    public ContaCorrente(int numero) {
+        this.agencia = Conta.AGENCIA_PADRAO;
+        this.numero = numero;
     }
 }

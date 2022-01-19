@@ -1,17 +1,12 @@
 import java.io.Serializable;
 
-public abstract class Conta implements IConta, Serializable {
-    private static final int AGENCIA_PADRAO = 1;
-    private static int SEQUENCIAL = 1;
+public abstract class Conta implements IConta {
+    protected static final int AGENCIA_PADRAO = 1;
 
     protected int agencia;
     protected int numero;
     protected double saldo;
 
-    public Conta() {
-        this.agencia = Conta.AGENCIA_PADRAO;
-        this.numero = SEQUENCIAL++;
-    }
 
     @Override
     public void sacar(double valor) {
