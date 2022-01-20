@@ -4,15 +4,11 @@ Projeto criado em bootcamp da [DIO](https://digitalinnovation.one/), para exerci
 
 Trabalhados conceitos de Encapsulamento, Herança, Polimorfismo.
 
-
-
-##### Toque pessoal
+#### Toque pessoal
 
 Além do projeto base da aula, foi desenvolvido uma classe *Data* que gerencia um banco de dados primitivo em txt, para administrar as contas através de um arquivo separado.
 
 As classes *ContaPoupanca* e *ContaCorrente* foram eliminadas, para simplificar a implementação, e a classe Conta deixou de ser abstrata e agora pode ser instanciada.
-
-
 
 Agora o projeto conta com os seguintes recursos:
 
@@ -23,8 +19,6 @@ Agora o projeto conta com os seguintes recursos:
 *Conta.depositar*
 
 *Conta.transferir*
-
-
 
 **Classe Data**
 
