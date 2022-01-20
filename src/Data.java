@@ -2,7 +2,6 @@
  * sob a forma de texto*/
 
 import java.io.*;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -35,24 +34,55 @@ public class Data {
 
     }
 
-    //terminar implementação
-    public static int GeradorNumero(){
+    /**Método varre o conteúdo do arquivo conta.txt até encontrar o número da conta.
+     * Para de ler, coloca os dados atualizados, retorna a leitura e grava em dados.txt.*/
+
+    public static void AtualizarConta(Conta conta){
         try{
             File f = new File("conta.txt");
             BufferedReader br = new BufferedReader(new FileReader(f));
+            String conteudo = "";
+            String continuacao = "";
+            String jaExiste = JaExiste(conta);
             String linha = "";
+            LocalDateTime data = LocalDateTime.now();
+            String criacao = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+            String escrever = String.format("%d\t\t\t%d\t\t\t%+10.2f\t\t%s\n", conta.numero, conta.agencia, conta.saldo, criacao);
 
-            while(br.ready()){
-                linha = br.readLine();
+
+            if(jaExiste!=null)
+            {
+                while (br.ready()) {
+                    linha = br.readLine();
+                    if (linha.substring(0,2).equals(jaExiste.substring(0,2))) {
+                        break;
+                    }
+                    conteudo = conteudo + linha + "\n";
+                }
+                while(br.ready()){
+                    linha = br.readLine();
+                    continuacao = continuacao + linha + "\n";
+
+                }
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                conteudo = conteudo + escrever + continuacao;
+                System.out.println("Base de dados atualizada: ");
+                System.out.println(conteudo);
+                bw.write(conteudo);
+                bw.close();
+
+
+
+            } else{
+                System.out.println("Essa conta não existe");
             }
-            System.out.println(linha);
 
 
+            br.close();
         }catch (IOException e){
             System.out.println("ERRO NA ABERTURA DO ARQUIVO");
         }
 
-        return 0;
     }
 
     //Adiciona uma conta, se ela ainda não existir
@@ -63,9 +93,8 @@ public class Data {
                BufferedWriter br = new BufferedWriter(new FileWriter(f, true));
                //O FileWriter com o parâmetro true faz com que escrevamos no arquivo sem apagar o conteúdo anterior
                LocalDateTime data = LocalDateTime.now();
-               String escrever = conta.numero + "\t\t\t" +
-                       conta.agencia + "\t\t\t" +
-                       data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
+               String criacao = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+               String escrever = String.format("%d\t\t\t%d\t\t\t%+10.2f\t\t%s\n", conta.numero, conta.agencia, conta.saldo, criacao);
                br.write(escrever);
                System.out.println("A seguinte entrada foi adicionada com sucesso: ");
                System.out.println(escrever);

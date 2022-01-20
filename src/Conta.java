@@ -1,11 +1,17 @@
 import java.io.Serializable;
 
-public abstract class Conta implements IConta {
+public class Conta implements IConta {
     protected static final int AGENCIA_PADRAO = 1;
 
     protected int agencia;
     protected int numero;
     protected double saldo;
+
+    public Conta(int numero) {
+        this.agencia = Conta.AGENCIA_PADRAO;
+        this.numero = numero;
+        this.saldo = 0;
+    }
 
 
     @Override
@@ -26,22 +32,5 @@ public abstract class Conta implements IConta {
          * já criados dentro dessa classe em outro método.*/
     }
 
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    protected void ImprimirAtributos() {
-        System.out.printf("Agência: %d%n", this.agencia);
-        System.out.printf("Numero: %d%n", this.numero);
-        System.out.printf("Saldo: %.2f%n", this.saldo);
-
-    }
 }
+
